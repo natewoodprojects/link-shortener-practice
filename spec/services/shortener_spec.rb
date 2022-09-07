@@ -20,17 +20,14 @@ RSpec.describe Shortener do
 
         expect(code_2).not_to eq(code_1)
     end
-    
-    it "it always gives the same URl the same lookup code" do
+
+    it "generated a Link record with a unique lookup code" do
         url = "https://www.codewars.com/users/TakoKing8217"
         shortener = Shortener.new(url)
-        code_1 = shortener.lookup_code
-        expect(shortener.lookup_code.length).to eq(7)
+        link = shortener.generate_short_link
+        expect(link.valid?).to be(true)
 
-        url = "https://www.codewars.com/users/TakoKing8217"
-        shortener = Shortener.new(url)
-        code_2 = shortener.lookup_code
-
-        expect(code_2).to eq(code_1)
+        link2 = shortener.generate_short_link
+        expect(link2.valid?).to be(true)
     end
 end

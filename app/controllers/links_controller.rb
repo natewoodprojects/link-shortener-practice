@@ -5,6 +5,8 @@ class LinksController < ApplicationController
         @link = shortener.generate_short_link
     end
 
+    private
+
     def link_params
         params.require(:link).permit(:original_url)
     end
